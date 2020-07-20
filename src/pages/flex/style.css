@@ -1,0 +1,22 @@
+.flex-container {
+  border: 1px solid #40a9ff;
+  border-radius: 4px;
+  height: 500px;
+  padding: 5px;
+}
+
+.flex-container .item{
+  margin-right: 5px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 120px;
+  background-color: #70a1ff;
+  font-size: 20px;
+  font-weight: 550;
+  color: #fff;
+}
+.flex-container .selected{
+  border: 1px solid #ff4757;
+}
