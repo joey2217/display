@@ -111,7 +111,7 @@ const ItemStyle = ({
           >
             <InputNumber
               min={styleOption.min}
-              defaultValue={styleOption.defaultValue}
+              // defaultValue={styleOption.defaultValue}
               onChange={(value) =>
                 setSelectedItemStyle(selected, {
                   [styleOption.propertyKey]: value,

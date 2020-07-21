@@ -1,0 +1,12 @@
+.grid-container {
+  border: 1px solid #40a9ff;
+  border-radius: 4px;
+  padding: 5px;
+}
+.grid-container .item {
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

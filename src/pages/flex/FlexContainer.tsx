@@ -49,7 +49,7 @@ const FlexContainer = ({
         </div>
       }
     >
-      {containerStyle.display === "inline-flex" && <span>Foo</span>}
+      {/* {containerStyle.display === "inline-flex" && <span>Foo</span>} */}
       <div className="flex-container container" style={{ ...containerStyle }}>
         {itemStyle.map((style, index) =>
           React.createElement(
@@ -67,7 +67,7 @@ const FlexContainer = ({
           )
         )}
       </div>
-      {containerStyle.display === "inline-flex" && <span>Bar</span>}
+      {/* {containerStyle.display === "inline-flex" && <span>Bar</span>} */}
     </Card>
   );
 };
