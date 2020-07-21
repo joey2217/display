@@ -1,7 +1,7 @@
 .flex-container {
   border: 1px solid #40a9ff;
   border-radius: 4px;
-  height: 500px;
+  height: 300px;
   padding: 5px;
 }
 
@@ -9,14 +9,22 @@
   margin-right: 5px;
   width: 120px;
   height: 120px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 120px;
-  background-color: #70a1ff;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 550;
   color: #fff;
+  border: 1px solid transparent;
+  line-height: 120px;
+  text-align: center;
+  cursor: pointer;
 }
 .flex-container .selected{
   border: 1px solid #ff4757;
+}
+
+.flex-container-extra{
+  width: 30%;
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

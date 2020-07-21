@@ -1,4 +1,4 @@
-import React, { useState, useCallback, CSSProperties } from "react";
+import React, { useState, useCallback, CSSProperties, useEffect } from "react";
 import { Row, Col } from "antd";
 import FlexContainer from "./FlexContainer";
 import ContainerStyle from "./ContainerStyle";
@@ -12,6 +12,7 @@ const Flex = () => {
     flexWrap: "nowrap",
     justifyContent: "flex-start",
     alignItems: "stretch",
+    alignContent: "stretch",
   });
 
   const [itemStyle, setItemStyle] = useState<CSSProperties[]>([
@@ -80,9 +81,13 @@ const Flex = () => {
     setItemStyle([...itemStyle.slice(0, itemStyle.length - 1)]);
   }, [itemStyle]);
 
+  useEffect(()=>{
+    document.title="📺Display📺-Flex"
+  },[])
+
   return (
     <Row>
-      <Col xs={24} sm={24} md={24} lg={12}>
+      <Col span={24}>
         <FlexContainer
           containerStyle={containerStyle}
           itemStyle={itemStyle}
@@ -93,18 +98,14 @@ const Flex = () => {
         />
       </Col>
       <Col xs={24} sm={24} md={24} lg={12}>
-        <Row>
-          <Col span={24}>
-            <ContainerStyle setFlexContainerStyle={setFlexContainerStyle} />
-          </Col>
-          <Col span={24}>
-            <ItemStyle
-              selected={selected}
-              selectedItemStyle={itemStyle[selected]}
-              setSelectedItemStyle={setSelectedItemStyle}
-            />
-          </Col>
-        </Row>
+        <ContainerStyle setFlexContainerStyle={setFlexContainerStyle} />
+      </Col>
+      <Col xs={24} sm={24} md={24} lg={12}>
+        <ItemStyle
+          selected={selected}
+          selectedItemStyle={itemStyle[selected]}
+          setSelectedItemStyle={setSelectedItemStyle}
+        />
       </Col>
     </Row>
   );

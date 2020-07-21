@@ -17,6 +17,7 @@ const App: FC = () => (
           <Suspense fallback={"Loading"}>
             <Switch>
               <Route path="/flex" component={Flex} />
+              <Route path="/grid" component={lazy(()=>import('./pages/grid'))} />
               <Route render={() => <Redirect to="/flex" />} />
             </Switch>
           </Suspense>
