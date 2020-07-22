@@ -1,10 +1,20 @@
 import React, { CSSProperties, useEffect } from "react";
-import { Card, Form, InputNumber, Input, Select, Popover } from "antd";
+import {
+  Card,
+  Form,
+  InputNumber,
+  Input,
+  Select,
+  Popover,
+  Row,
+  Col,
+} from "antd";
 import CssCode from "../../components/CssCode";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 const layout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 16 },
+  labelCol: { span: 6 },
+  wrapperCol: { span: 18 },
 };
 interface Props {
   selected: number;
@@ -100,122 +110,143 @@ const ItemStyle = ({
     <Card title={<code>.item{selected + 1}</code>}>
       <Form {...layout} form={form}>
         {numberStyleOptions.map((styleOption) => (
-          <Form.Item
-            key={styleOption.label}
-            label={
-              <Popover content={styleOption.content} title={styleOption.label}>
-                <span style={{ cursor: "pointer" }}>{styleOption.label}</span>
-              </Popover>
-            }
-            name={styleOption.propertyKey}
-          >
-            <InputNumber
-              min={styleOption.min}
-              // defaultValue={styleOption.defaultValue}
-              onChange={(value) =>
-                setSelectedItemStyle(selected, {
-                  [styleOption.propertyKey]: value,
-                })
-              }
-            />
+          <Form.Item key={styleOption.label} label={styleOption.label}>
+            <Row align="middle">
+              <Col span={22}>
+                <Form.Item noStyle name={styleOption.propertyKey}>
+                  <InputNumber
+                    min={styleOption.min}
+                    // defaultValue={styleOption.defaultValue}
+                    onChange={(value) =>
+                      setSelectedItemStyle(selected, {
+                        [styleOption.propertyKey]: value,
+                      })
+                    }
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={2}>
+                <div className="text-center">
+                  <Popover
+                    content={styleOption.content}
+                    title={styleOption.label}
+                  >
+                    <QuestionCircleOutlined />
+                  </Popover>
+                </div>
+              </Col>
+            </Row>
           </Form.Item>
         ))}
-        <Form.Item
-          label={
-            <Popover
-              content={
-                <div>
-                  <p>
-                    <code>flex-basis</code>
-                    属性定义了在分配多余空间之前，项目占据的主轴空间（main
-                    size）。
-                  </p>
-                  <p>
-                    浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
-                  </p>
-                  <CssCode>
-                    {`.item {
-  flex-basis: <length> | auto; /* default auto */
-}`}
-                  </CssCode>
-                  <p>
-                    它可以设为跟width或height属性一样的值（比如100px），则项目将占据固定空间。
-                  </p>
-                  <h3>flex</h3>
-                  <p>
-                    <code>flex</code>
-                    属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0
-                    1 auto。后两个属性可选。
-                  </p>
-                  <CssCode>
-                    {`.item {
-  flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
-}`}
-                  </CssCode>
-                  <p>
-                    该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
-                  </p>
-                  <p>
-                    建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
-                  </p>
-                </div>
-              }
-              title="flex-basis"
-            >
-              <span style={{ cursor: "pointer" }}>flex-basis</span>
-            </Popover>
-          }
-          name="flexBasis"
-        >
-          <Input
-            onChange={(e) =>
-              setSelectedItemStyle(selected, {
-                flexBasis: e.target.value,
-              })
-            }
-          />
+        <Form.Item label="flex-basis">
+          <Row align="middle">
+            <Col span={22}>
+              <Form.Item noStyle name="flexBasis">
+                <Input
+                  allowClear
+                  onChange={(e) =>
+                    setSelectedItemStyle(selected, {
+                      flexBasis: e.target.value,
+                    })
+                  }
+                />
+              </Form.Item>
+            </Col>
+            <Col span={2}>
+              <div className="text-center">
+                <Popover
+                  content={
+                    <div>
+                      <p>
+                        <code>flex-basis</code>
+                        属性定义了在分配多余空间之前，项目占据的主轴空间（main
+                        size）。
+                      </p>
+                      <p>
+                        浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+                      </p>
+                      <CssCode>
+                        {`.item {
+        flex-basis: <length> | auto; /* default auto */
+      }`}
+                      </CssCode>
+                      <p>
+                        它可以设为跟width或height属性一样的值（比如100px），则项目将占据固定空间。
+                      </p>
+                      <h3>flex</h3>
+                      <p>
+                        <code>flex</code>
+                        属性是flex-grow, flex-shrink 和
+                        flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+                      </p>
+                      <CssCode>
+                        {`.item {
+        flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+      }`}
+                      </CssCode>
+                      <p>
+                        该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
+                      </p>
+                      <p>
+                        建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
+                      </p>
+                    </div>
+                  }
+                  title="flex-basis"
+                >
+                  <QuestionCircleOutlined />
+                </Popover>
+              </div>
+            </Col>
+          </Row>
         </Form.Item>
-        <Form.Item
-          label={
-            <Popover
-              content={
-                <div>
-                  <p>
-                    <code>align-self</code>
-                    属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。
-                  </p>
-                  <p>
-                    默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
-                  </p>
-                  <CssCode>
-                    {`.item {
+        <Form.Item label="align-self">
+          <Row align="middle">
+            <Col span={22}>
+              <Form.Item name="alignSelf" noStyle>
+                <Select
+                  defaultValue="auto"
+                  onChange={(value) =>
+                    setSelectedItemStyle(selected, {
+                      alignSelf: value,
+                    })
+                  }
+                >
+                  <Select.Option value="auto">auto</Select.Option>
+                  <Select.Option value="flex-start">flex-start</Select.Option>
+                  <Select.Option value="flex-end">flex-end</Select.Option>
+                  <Select.Option value="center">center</Select.Option>
+                  <Select.Option value="baseline">baseline</Select.Option>
+                  <Select.Option value="stretch">stretch</Select.Option>
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col span={2}>
+              <div className="text-center">
+                <Popover
+                  content={
+                    <div>
+                      <p>
+                        <code>align-self</code>
+                        属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。
+                      </p>
+                      <p>
+                        默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+                      </p>
+                      <CssCode>
+                        {`.item {
   align-self: auto | flex-start | flex-end | center | baseline | stretch;
 }`}
-                  </CssCode>
-                </div>
-              }
-              title="align-self"
-            >
-              <span style={{ cursor: "pointer" }}>align-self</span>
-            </Popover>
-          }
-          name="alignSelf"
-        >
-          <Select
-            defaultValue="auto"
-            onChange={(value) =>
-              setSelectedItemStyle(selected, {
-                alignSelf: value,
-              })
-            }
-          >
-            <Select.Option value="auto">auto</Select.Option>
-            <Select.Option value="flex-start">flex-start</Select.Option>
-            <Select.Option value="flex-end">flex-end</Select.Option>
-            <Select.Option value="center">center</Select.Option>
-            <Select.Option value="baseline">baseline</Select.Option>
-            <Select.Option value="stretch">stretch</Select.Option>
-          </Select>
+                      </CssCode>
+                    </div>
+                  }
+                  title="alignSelf"
+                >
+                  <QuestionCircleOutlined />
+                </Popover>
+              </div>
+            </Col>
+          </Row>
         </Form.Item>
       </Form>
     </Card>

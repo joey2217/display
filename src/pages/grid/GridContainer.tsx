@@ -15,9 +15,17 @@ const colors = [
 
 interface Props {
   containerStyle: CSSProperties;
+  itemStyle: CSSProperties[];
+  selected: number;
+  setSelected: (index: number) => void;
 }
 
-const GridContainer = ({ containerStyle }: Props) => {
+const GridContainer = ({
+  containerStyle,
+  itemStyle,
+  selected,
+  setSelected,
+}: Props) => {
   return (
     <Card
       title="GridContainer"
@@ -35,9 +43,15 @@ const GridContainer = ({ containerStyle }: Props) => {
           React.createElement(
             "div",
             {
-              style: { backgroundColor: color },
-              className: "item",
-              key:index,
+              style: {
+                backgroundColor: color,
+                ...itemStyle[index],
+              },
+              className: `item item-${index} ${
+                selected === index ? "selected" : ""
+              }`,
+              key: index,
+              onClick: () => setSelected(index),
             },
             index + 1
           )

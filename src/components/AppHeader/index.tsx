@@ -17,7 +17,7 @@ const AppHeader = () => {
       <Menu
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={[location.pathname]}
+        selectedKeys={[location.pathname]}
         className="menu"
       >
         <Menu.Item key="/flex">

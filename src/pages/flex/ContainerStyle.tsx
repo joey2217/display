@@ -1,11 +1,12 @@
 import React, { CSSProperties } from "react";
-import { Card, Select, Popover } from "antd";
+import { Card, Select, Popover, Row, Col } from "antd";
 import { Form } from "antd";
 import CssCode from "../../components/CssCode";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 const layout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 16 },
+  labelCol: { span: 6 },
+  wrapperCol: { span: 18 },
 };
 
 interface Props {
@@ -215,25 +216,35 @@ const ContainerStyle = ({ setFlexContainerStyle }: Props) => {
         {styleOptions.map((styleOption) => (
           <Form.Item
             key={styleOption.label}
-            label={
-              <Popover content={styleOption.content} title={styleOption.label}>
-                <span style={{ cursor: "pointer" }}>{styleOption.label}</span>
-              </Popover>
-            }
+            label={styleOption.label}
             name={styleOption.label}
           >
-            <Select
-              defaultValue={styleOption.defaultValue}
-              onChange={(value) =>
-                setFlexContainerStyle({ [styleOption.propertyKey]: value })
-              }
-            >
-              {styleOption.options.map((option) => (
-                <Select.Option key={option} value={option}>
-                  {option}
-                </Select.Option>
-              ))}
-            </Select>
+            <Row align="middle">
+              <Col span={22}>
+                <Select
+                  defaultValue={styleOption.defaultValue}
+                  onChange={(value) =>
+                    setFlexContainerStyle({ [styleOption.propertyKey]: value })
+                  }
+                >
+                  {styleOption.options.map((option) => (
+                    <Select.Option key={option} value={option}>
+                      {option}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Col>
+              <Col span={2}>
+                <div className="text-center">
+                  <Popover
+                    content={styleOption.content}
+                    title={styleOption.label}
+                  >
+                    <QuestionCircleOutlined />
+                  </Popover>
+                </div>
+              </Col>
+            </Row>
           </Form.Item>
         ))}
       </Form>

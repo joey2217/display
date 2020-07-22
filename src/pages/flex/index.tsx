@@ -81,13 +81,13 @@ const Flex = () => {
     setItemStyle([...itemStyle.slice(0, itemStyle.length - 1)]);
   }, [itemStyle]);
 
-  useEffect(()=>{
-    document.title="📺Display📺-Flex"
-  },[])
+  useEffect(() => {
+    document.title = "📺Display📺-Flex";
+  }, []);
 
   return (
     <Row>
-      <Col span={24}>
+      <Col span={24} sm={24} md={24} lg={8}>
         <FlexContainer
           containerStyle={containerStyle}
           itemStyle={itemStyle}
@@ -97,10 +97,10 @@ const Flex = () => {
           decreaseItem={decreaseItem}
         />
       </Col>
-      <Col xs={24} sm={24} md={24} lg={12}>
+      <Col xs={24} sm={24} md={12} lg={8}>
         <ContainerStyle setFlexContainerStyle={setFlexContainerStyle} />
       </Col>
-      <Col xs={24} sm={24} md={24} lg={12}>
+      <Col xs={24} sm={24} md={12} lg={8}>
         <ItemStyle
           selected={selected}
           selectedItemStyle={itemStyle[selected]}
